@@ -3,15 +3,15 @@ package com.jvg.ExpenseTracker.controller;
 import com.jvg.ExpenseTracker.dto.ExpenseDTO;
 import com.jvg.ExpenseTracker.model.Expense;
 import com.jvg.ExpenseTracker.service.ExpenseService;
+import com.jvg.ExpenseTracker.service.PDFGeneratorService;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/expense")
@@ -19,6 +19,7 @@ import java.util.Optional;
 @CrossOrigin("*")
 public class ExpenseController {
     private final ExpenseService expenseService;
+    private final PDFGeneratorService pdfGeneratorService;
 
     @PostMapping
     public ResponseEntity<?> postExpense(@RequestBody ExpenseDTO expenseDTO) {
@@ -69,6 +70,11 @@ public class ExpenseController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong");
         }
+    }
+
+    @PostMapping("/report")
+    public void generatePdf() throws Exception {
+        pdfGeneratorService.generatePdfReport();
     }
 
 }
