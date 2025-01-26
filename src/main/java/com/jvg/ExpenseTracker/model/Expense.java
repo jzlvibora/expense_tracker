@@ -1,9 +1,6 @@
 package com.jvg.ExpenseTracker.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -21,9 +18,11 @@ public class Expense {
 
     private String description;
 
-    private String category;
-
     private LocalDate date;
 
     private Integer amount;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 }

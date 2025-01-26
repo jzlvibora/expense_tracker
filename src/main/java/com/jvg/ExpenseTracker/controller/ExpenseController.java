@@ -7,6 +7,7 @@ import com.jvg.ExpenseTracker.service.PDFGeneratorService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -75,6 +76,12 @@ public class ExpenseController {
     @PostMapping("/report")
     public void generatePdf() throws Exception {
         pdfGeneratorService.generatePdfReport();
+    }
+
+    @GetMapping("/category")
+    public ResponseEntity<?> getExpensesByCategory(Long id) {
+        List<ExpenseDTO> expenses = expenseService.getExpenseByCategory(id);
+        return ResponseEntity.status(HttpStatus.OK).body(expenses);
     }
 
 }

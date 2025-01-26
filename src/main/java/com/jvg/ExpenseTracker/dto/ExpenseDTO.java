@@ -1,14 +1,13 @@
 package com.jvg.ExpenseTracker.dto;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import com.jvg.ExpenseTracker.model.Category;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Data
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class ExpenseDTO {
     private Long id;
 
@@ -16,11 +15,10 @@ public class ExpenseDTO {
 
     private String description;
 
-    private String category;
+    private String categoryName;
 
     private LocalDate date;
 
     private Integer amount;
-
 
 }

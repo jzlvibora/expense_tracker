@@ -87,7 +87,7 @@ public class PDFGeneratorService {
             table.getDefaultCell().setVerticalAlignment(Element.ALIGN_LEFT);
 
             table.addCell(expense.getTitle());
-            table.addCell(expense.getCategory());
+            table.addCell(expense.getCategory().getName());
             table.addCell(expense.getDescription());
             table.addCell(String.valueOf(expense.getDate()));
             table.addCell(pdfConfig.getCurrencySymbol() + expense.getAmount());
